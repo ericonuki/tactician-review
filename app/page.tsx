@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { ReviewDemo, OverlayDemo, PrivacyDemo } from "./review-demo";
 import { product } from "./product";
 
@@ -29,19 +30,13 @@ export default function Page() {
             <div className="heroActions"><a className="button primary" href="#coach">Open a sample review <span aria-hidden="true">↗</span></a><a className="textLink" href="#scope">Read the approval scope <span aria-hidden="true">→</span></a></div>
             <div className="prototypeNote"><span aria-hidden="true">◇</span> Interactive concept · Synthetic match data · Not yet approved</div>
           </div>
-          <div className="heroVisual" aria-label="Illustrative post-game coaching report">
+          <div className="heroVisual">
             <div className="visualCaption"><span>THE MATCH IS OVER. THE LEARNING ISN’T.</span><span>01 / REVIEW</span></div>
-            <div className="window">
-              <div className="windowBar"><span className="miniBrand">T·</span><b>Match review</b><span className="pill">MATCH COMPLETE</span></div>
-              <div className="reportHead"><div><small>SYNTHETIC MATCH / 34:18</small><h2>A good result.<br /><span>A useful lesson.</span></h2></div><div className="placement"><b>04<span>th</span></b><small>PLACEMENT</small></div></div>
-              <div className="chartHeader"><strong>Economy timeline</strong><span>Gold · selected snapshots</span></div>
-              <div className="economyChart" role="img" aria-label="Synthetic gold timeline: 20, 30, 40, 50, 42, 8, 18, 28 gold. Roll-down at Stage 4-1.">
-                {[20,30,40,50,42,8,18,28].map((gold, i) => <div key={i} className={i === 5 ? "chartBar selected" : "chartBar"} style={{height: `${gold * 1.5 + 14}px`}}><span>{gold}</span></div>)}
-              </div>
-              <div className="chartLabels"><span>STAGE 2</span><span>STAGE 3</span><span className="goldText">4-1 ROLL-DOWN</span><span>STAGE 5</span></div>
-              <div className="findingGrid"><div><span className="findingTag mintText">WHAT WENT WELL</span><h3>Economy discipline</h3><p>Built a healthy reserve before the transition.</p></div><div><span className="findingTag goldText">WORTH A CLOSER LOOK</span><h3>Transition flexibility</h3><p>Two possible paths appeared in the shops you saw.</p></div></div>
-              <div className="coachCard"><span className="coachIcon" aria-hidden="true">✧</span><div><small>ONE FOCUS FOR YOUR NEXT GAME</small><p>Consider two transition paths before committing.</p></div><span aria-hidden="true">↗</span></div>
-            </div>
+            <figure className="heroArtwork">
+              <Image src="/images/arena-after-match.webp" alt="Original fantasy arena concept artwork showing the quiet space after a match." width={1536} height={1024} preload sizes="(max-width: 850px) calc(100vw - 48px), (max-width: 1100px) 46vw, 620px" />
+              <div className="heroReportCard"><span className="pill">MATCH COMPLETE</span><h2>A good result.<br /><span>A useful lesson.</span></h2><p><small>PRACTICE FOCUS</small>Consider two transition paths before committing.</p></div>
+              <figcaption>Original concept artwork · not a gameplay capture</figcaption>
+            </figure>
             <div className="visualFoot"><span className="statusDot" /> Personalized analysis begins only after the match ends.</div>
           </div>
         </section>
@@ -72,6 +67,7 @@ export default function Page() {
           <div className="sectionHeading"><div><div className="eyebrow">02 / AFTER THE MATCH</div><h2>Understand the decision.<br /><span className="mutedHeading">Then build the habit.</span></h2></div><p>Explore a synthetic review. Select a moment, inspect its evidence, and save a practice objective for a future match.</p></div>
           <ReviewDemo />
           <div className="teachingNotes"><p><b>Evidence first.</b> Planned deterministic analyzers identify decision points before an AI explanation is generated.</p><p><b>Context over certainty.</b> Alternative paths are discussion points, not proof that another choice would have won.</p><p><b>Progress over prescriptions.</b> Review strengths, recurring habits and a small number of future practice goals.</p></div>
+          <section className="reviewRoom" aria-label="The review room"><figure className="reviewRoomArtwork"><Image src="/images/coaching-study.webp" alt="Original fantasy study concept artwork for a post-game coaching session." fill sizes="(max-width: 850px) calc(100vw - 48px), (max-width: 1100px) 44vw, 520px" /><figcaption>Original concept artwork · not a gameplay capture</figcaption></figure><div className="reviewRoomCopy"><div className="eyebrow">THE REVIEW ROOM</div><h3>Turn a finished game into a future habit.</h3><p>Return to one decision with its evidence, discuss the trade-offs, and leave with a player-chosen focus for the next match.</p></div></section>
         </section>
 
         <section id="data" className="section shell">
