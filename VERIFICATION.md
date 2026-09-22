@@ -12,4 +12,16 @@ Screenshots are local in `.scratch/verification/`. This is browser verification 
 
 ## Still required for submission / launch
 
-Publish a public reviewer URL. Obtain explicit decisions on telemetry and sensitive categories, define production retention and processors, and follow the Riot approval / Production key / applicable RSO and subsequent Overwolf review process. See `REVIEW_SUBMISSION.md`.
+Public reviewer URL: https://tactician-review.vercel.app. Obtain explicit decisions on telemetry and sensitive categories, define production retention and processors, and follow the Riot approval / Production key / applicable RSO and subsequent Overwolf review process. See `REVIEW_SUBMISSION.md`.
+
+## Motion redesign — 2026-09-22
+
+- `npm run build` passed after the redesign; verified using `npm run start -- --port 3001`.
+- No new dependencies. CSS 3D board responds to scroll; section reveals and review-panel entrance use an IntersectionObserver; artwork parallax is progressive CSS enhancement.
+- Browser Harness checked CSS viewport widths 1440, approximately 768 (769 after browser zoom rounding), 390 and 320: no horizontal document overflow. Desktop hero/report and mobile hero/report screenshots inspected.
+- Observed board rotation changing from -0.972deg to -8.172deg after scrolling; review reveal completed at opacity 1, and reading progress advanced.
+- All review moments, goal saving and evidence disclosure passed. Static references, overlay dismissal/restoration, recording/screenshots and synthetic deletion controls passed. Internal anchors resolve; `/privacy` returned HTTP 200.
+- Changing reduced-motion preference cleared scroll/rotation properties and disabled animations. Base content is not hidden by animation classes, preserving the reading experience without JavaScript.
+- Task-created browser tabs were closed after checks to remove viewport emulation from the user’s browser.
+
+Artifacts: `.scratch/verification/overhaul-*.png`; browser scripts in `.scratch/check-overhaul*.py` (ignored local verification files).

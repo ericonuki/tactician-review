@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { ScrollMotion } from "./scroll-motion";
 import { ReviewDemo, OverlayDemo, PrivacyDemo } from "./review-demo";
 import { product } from "./product";
 
@@ -15,65 +16,76 @@ export default function Page() {
   return (
     <>
       <a href="#main" className="skipLink">Skip to content</a>
+      <ScrollMotion />
+      <div className="readingProgress" aria-hidden="true" />
       <header className="nav shell">
-        <a className="brand" href="#" aria-label={`${product.name} home`}><span className="brandMark" aria-hidden="true">T<span>·</span></span>{product.name}<span className="brandLabel">POST-GAME COACH</span></a>
-        <nav aria-label="Main navigation"><a href="#experience">Experience</a><a href="#live">In game</a><a href="#scope">Review scope</a></nav>
-        <a className="navCta" href="#coach">Explore the demo <span aria-hidden="true">↗</span></a>
+        <a className="brand" href="#" aria-label={`${product.name} home`}><span className="brandMark" aria-hidden="true">✳</span>{product.name}<span className="brandLabel">THE POST-GAME COACH</span></a>
+        <nav aria-label="Main navigation"><a href="#experience">The idea</a><a href="#coach">The experience</a><a href="#scope">For reviewers</a></nav>
+        <a className="navCta" href="#coach">Enter the review <span aria-hidden="true">↗</span></a>
       </header>
       <main id="main">
         <section className="hero shell">
-          <div className="heroCopy">
-            <div className="eyebrow"><span className="statusDot" /> FOR RIOT / OVERWOLF REVIEW</div>
-            <h1>Record now.<br /><em>Coach later.</em></h1>
-            <p className="lede">A better understanding of your last game.<br className="desktopBreak" /> A clearer focus for your next.</p>
-            <p className="heroDescription">A proposed Teamfight Tactics desktop coach that turns completed matches into evidence-led lessons. You make the decisions. The coaching comes after.</p>
-            <div className="heroActions"><a className="button primary" href="#coach">Open a sample review <span aria-hidden="true">↗</span></a><a className="textLink" href="#scope">Read the approval scope <span aria-hidden="true">→</span></a></div>
-            <div className="prototypeNote"><span aria-hidden="true">◇</span> Interactive concept · Synthetic match data · Not yet approved</div>
+          <div className="heroCopy" data-reveal>
+            <div className="eyebrow"><span className="statusDot" /> A NEW PERSPECTIVE ON YOUR LAST MATCH</div>
+            <h1>The game ends.<br />Your growth<br /><em>doesn’t.</em></h1>
+            <p className="lede">Meet your post-game TFT coach.</p>
+            <p className="heroDescription">Turn the decisions you made into lessons that stay with you. A clearer picture of the last match. A little more intention for the next.</p>
+            <div className="heroActions"><a className="button primary" href="#coach">Explore a match review <span aria-hidden="true">↗</span></a><a className="textLink" href="#experience">Discover the idea ↓</a></div>
+            <p className="prototypeNote">RIOT / OVERWOLF REVIEW CONCEPT · NOT YET APPROVED</p>
           </div>
           <div className="heroVisual">
-            <div className="visualCaption"><span>THE MATCH IS OVER. THE LEARNING ISN’T.</span><span>01 / REVIEW</span></div>
-            <figure className="heroArtwork">
-              <Image src="/images/arena-after-match.webp" alt="Original fantasy arena concept artwork showing the quiet space after a match." width={1536} height={1024} preload sizes="(max-width: 850px) calc(100vw - 48px), (max-width: 1100px) 46vw, 620px" />
-              <div className="heroReportCard"><span className="pill">MATCH COMPLETE</span><h2>A good result.<br /><span>A useful lesson.</span></h2><p><small>PRACTICE FOCUS</small>Consider two transition paths before committing.</p></div>
-              <figcaption>Original concept artwork · not a gameplay capture</figcaption>
-            </figure>
-            <div className="visualFoot"><span className="statusDot" /> Personalized analysis begins only after the match ends.</div>
+            <div className="sceneLabel"><span>YOUR NEXT CHAPTER STARTS HERE</span><span>01 — 03</span></div>
+            <div className="boardScene" role="img" aria-label="An abstract three-dimensional game board, with a completed-match timeline floating above it. Decorative concept, not gameplay.">
+              <div className="sceneOrbit orbitOne" /><div className="sceneOrbit orbitTwo" />
+              <div className="boardAssembly">
+                <div className="boardBase"><div className="boardGrid">{Array.from({length:49},(_,i)=><span key={i} className={[9,16,24,29,32,38].includes(i) ? "occupied" : ""}>{[9,16,24,29,32,38].includes(i) && <i className="crystal"><i /></i>}</span>)}</div><span className="boardEdge">TACTICIAN / REFLECTION ENGINE</span></div>
+                <div className="boardHalo" />
+              </div>
+              <div className="floatingInsight"><span className="insightIcon">✧</span><div><small>AFTER THE MATCH</small><strong>A decision worth revisiting.</strong><span>Stage 4-1 · The transition window</span></div></div>
+              <div className="floatingMoment"><span>4-1</span><div className="miniTimeline"><i /><i /><i /><i /><i /><i /><i /></div><small>MATCH COMPLETE</small></div>
+              <span className="sceneCoordinate coordinateLeft">34:18 / RECORDED</span><span className="sceneCoordinate coordinateRight">LEARNING UNLOCKED ↗</span>
+            </div>
+            <div className="sceneFoot"><span className="statusDot" /> Record now. Coach later.<span>ILLUSTRATIVE 3D CONCEPT</span></div>
+          </div>
+        </section>
+        <div className="chapterRail shell"><span>DESIGNED FOR REFLECTION</span><span>01 / PLAY</span><span>02 / UNDERSTAND</span><span>03 / GROW</span><a href="#experience" aria-label="Scroll to the product story">↓</a></div>
+
+        <section id="experience" className="manifesto shell" data-reveal>
+          <div className="eyebrow">THE RESULT IS ONLY PART OF THE STORY</div>
+          <h2>You remember the finish.<br /><span>Let’s understand</span><br />how you got there.</h2>
+          <div className="manifestoBottom"><span className="asterisk" aria-hidden="true">✳</span><p>A placement tells you where you ended up. Tactician is a proposed desktop coach for exploring the choices, trade-offs and patterns behind a completed match.</p><p>Personalized coaching starts only after the full match ends. During play, you stay in charge.</p></div>
+        </section>
+
+        <section className="storyChapter shell" id="flow">
+          <div className="chapterIntro" data-reveal><span className="chapterIndex">01 — THE RHYTHM</span><h2>Play it.<br />Revisit it.<br /><em>Build on it.</em></h2><p>One match becomes a small, useful step forward.</p><a className="textLink" href="#coach">Step inside the review ↗</a></div>
+          <div className="storySteps">
+            <article data-reveal><span className="stepNumber">01</span><div><small>BEFORE & DURING PLAY</small><h3>Bring a focus.<br />Play your own game.</h3><p>Choose a practice goal from an earlier review. Keep static references nearby, or dismiss the overlay. With consent, only explicitly approved match context would be recorded.</p><span className="storyTag">No personalized current-match advice</span></div></article>
+            <article className="stepGate" data-reveal><span aria-hidden="true">◇</span><div><small>THE FULL MATCH ENDS</small><p>The proposed match-end gate unlocks analysis. Uncertain completion keeps it locked.</p></div></article>
+            <article data-reveal><span className="stepNumber">02</span><div><small>AFTER THE MATCH</small><h3>Find the moment.<br />Understand the choice.</h3><p>Follow your historical timeline. Inspect the evidence. Explore an AI-assisted explanation of what worked, what was uncertain and what you might practice.</p><span className="storyTag">Evidence before explanation</span></div></article>
+            <article data-reveal><span className="stepNumber">03</span><div><small>INTO THE NEXT MATCH</small><h3>Leave with a habit.<br />Not a list of orders.</h3><p>Save one or two player-chosen objectives. During future play, these remain static reminders, unchanged by current-match events.</p><span className="storyTag">A future focus, chosen by you</span></div></article>
           </div>
         </section>
 
-        <section id="experience" className="boundary shell" aria-label="Product principle">
-          <div><span className="phaseNumber">01</span><div><small>DURING YOUR MATCH</small><h2>Space to play.</h2><p>Static references. Goals set beforehand.<br />Passive recording, only where approved.</p></div></div>
-          <div className="boundaryGate"><span aria-hidden="true">→</span><small>MATCH ENDS</small></div>
-          <div><span className="phaseNumber">02</span><div><small className="mintText">AFTER YOUR MATCH</small><h2>Room to improve.</h2><p>A decision timeline. Evidence-led explanations.<br />One or two objectives for future games.</p></div></div>
+        <section className="worldBreak" aria-label="Original arena concept artwork">
+          <Image src="/images/arena-after-match.webp" alt="A quiet floating fantasy arena after a match." fill sizes="100vw" />
+          <div className="worldCopy shell" data-reveal><span className="eyebrow">THE BOARD GOES QUIET. THE PICTURE GETS CLEARER.</span><h2>A little distance.<br /><em>A different perspective.</em></h2><p>Original concept artwork · not a gameplay capture</p></div>
         </section>
-
-        <section className="section shell" id="flow">
-          <div className="sectionHeading"><div><div className="eyebrow">THE PLAYER JOURNEY</div><h2>One match. A lasting lesson.</h2></div><p>A front-facing coaching experience, from a practice objective to a completed-match review.</p></div>
-          <ol className="journey">{[
-            ["Choose a focus", "Before queueing, select a goal from a previous review."],
-            ["Play your game", "Keep a small static overlay, or dismiss it entirely."],
-            ["Record quietly", "With consent, save only explicitly approved match context."],
-            ["Finish the match", "Confirm the full match has ended before unlocking analysis."],
-            ["Review & practice", "Explore key moments, then carry a lesson into a future game."],
-          ].map(([title, text], i) => <li key={title}><span>0{i + 1}</span><h3>{title}</h3><p>{text}</p></li>)}</ol>
+        <section id="coach" className="section shell coachSection">
+          <div className="sectionHeading" data-reveal><div><div className="eyebrow">THE EXPERIENCE / POST-GAME ONLY</div><h2>Your match.<br /><span className="mutedHeading">With the missing context.</span></h2></div><p>Explore a synthetic review. Select a moment, inspect its evidence, and save a practice objective for a future match.</p></div>
+          <div className="reviewStage" data-reveal><div className="reviewStageLabel"><span className="statusDot" /> MATCH ENDED — COACHING AVAILABLE<span>CLICK THROUGH THE DEMO BELOW</span></div><ReviewDemo /></div>
+          <div className="teachingNotes"><p><b>Evidence first.</b> Planned deterministic analyzers identify decision points before an AI explanation is generated.</p><p><b>Context over certainty.</b> Alternative paths are discussion points, not proof that another choice would have won.</p><p><b>Progress over prescriptions.</b> Review strengths, recurring habits and a small number of future practice goals.</p></div>
+          <section className="reviewRoom" data-reveal aria-label="The review room"><figure className="reviewRoomArtwork"><Image src="/images/coaching-study.webp" alt="Original fantasy study concept artwork for a post-game coaching session." fill sizes="(max-width: 850px) calc(100vw - 48px), (max-width: 1100px) 44vw, 520px" /><figcaption>Original concept artwork · not a gameplay capture</figcaption></figure><div className="reviewRoomCopy"><div className="eyebrow">THE REVIEW ROOM</div><h3>Turn a finished game into a future habit.</h3><p>Return to one decision with its evidence, discuss the trade-offs, and leave with a player-chosen focus for the next match.</p></div></section>
         </section>
 
         <section id="live" className="section shell liveSection">
-          <div><div className="eyebrow">01 / DURING THE MATCH</div><h2>A small overlay.<br />A clear boundary.</h2><p className="sectionIntro">The proposed live surface shows references and goals established before the match. Those goals stay unchanged, regardless of what happens in the game.</p><div className="policyColumns"><div><h3><span className="mintText">＋</span> Proposed live surface</h3><ul><li>Static champion and composition references</li><li>Static item information and recipes</li><li>Previous-session practice goals</li><li>Optional, dismissible overlay</li></ul></div><div><h3><span className="goldText">−</span> Excluded from live play</h3><ul><li>Buy, sell, reroll or level instructions</li><li>Current-shop or augment advice</li><li>Opponent-based positioning or scouting</li><li>Dynamic pivots or event-triggered reminders</li></ul></div></div></div>
+          <div><div className="eyebrow">DURING PLAY / INTENTIONALLY QUIET</div><h2>Your instincts.<br />Your decisions.</h2><p className="sectionIntro">The proposed live surface shows references and goals established before the match. Those goals stay unchanged, regardless of what happens in the game.</p><div className="policyColumns"><div><h3><span className="mintText">＋</span> Proposed live surface</h3><ul><li>Static champion and composition references</li><li>Static item information and recipes</li><li>Previous-session practice goals</li><li>Optional, dismissible overlay</li></ul></div><div><h3><span className="goldText">−</span> Excluded from live play</h3><ul><li>Buy, sell, reroll or level instructions</li><li>Current-shop or augment advice</li><li>Opponent-based positioning or scouting</li><li>Dynamic pivots or event-triggered reminders</li></ul></div></div></div>
           <div className="liveStage"><div className="stageLabel"><span className="statusDot" /> ILLUSTRATIVE LIVE SURFACE</div><div className="abstractBoard" aria-hidden="true">{Array.from({length:28},(_,i)=><span key={i} />)}</div><OverlayDemo /><p className="stageFoot">No live analysis. No reacting to the current board.<br />Try the reference panel or dismiss the overlay.</p></div>
         </section>
 
-        <section id="coach" className="section shell">
-          <div className="sectionHeading"><div><div className="eyebrow">02 / AFTER THE MATCH</div><h2>Understand the decision.<br /><span className="mutedHeading">Then build the habit.</span></h2></div><p>Explore a synthetic review. Select a moment, inspect its evidence, and save a practice objective for a future match.</p></div>
-          <ReviewDemo />
-          <div className="teachingNotes"><p><b>Evidence first.</b> Planned deterministic analyzers identify decision points before an AI explanation is generated.</p><p><b>Context over certainty.</b> Alternative paths are discussion points, not proof that another choice would have won.</p><p><b>Progress over prescriptions.</b> Review strengths, recurring habits and a small number of future practice goals.</p></div>
-          <section className="reviewRoom" aria-label="The review room"><figure className="reviewRoomArtwork"><Image src="/images/coaching-study.webp" alt="Original fantasy study concept artwork for a post-game coaching session." fill sizes="(max-width: 850px) calc(100vw - 48px), (max-width: 1100px) 44vw, 520px" /><figcaption>Original concept artwork · not a gameplay capture</figcaption></figure><div className="reviewRoomCopy"><div className="eyebrow">THE REVIEW ROOM</div><h3>Turn a finished game into a future habit.</h3><p>Return to one decision with its evidence, discuss the trade-offs, and leave with a player-chosen focus for the next match.</p></div></section>
-        </section>
-
         <section id="data" className="section shell">
-          <div className="sectionHeading"><div><div className="eyebrow">PROPOSED RECORDING SCOPE</div><h2>The context behind the lesson.</h2></div><p>Every telemetry category is subject to Riot/Overwolf approval and source availability. This website records no gameplay and connects to no game APIs.</p></div>
-          <div className="dataGrid">{data.map(([n,title,desc,status])=><article key={n}><div className="dataTop"><span>{n}</span><span aria-hidden="true">↗</span></div><h3>{title}</h3><p>{desc}</p><small>{status}</small></article>)}</div>
-          <div className="architecture"><div className="architectureTitle"><span>PROPOSED DATA FLOW</span><small>Collection and coaching are separate paths.</small></div><div className="pipeline"><div><small>IN MATCH</small><strong>Approved recorder</strong><p>Consented events → stored timeline</p></div><div className="matchGate"><span aria-hidden="true">◇</span><strong>Match-end gate</strong><p>No analysis until confirmed complete</p></div><div><small>POST-GAME ONLY</small><strong>Analyzers → AI coach</strong><p>Structured findings → report → future goals</p></div></div><p className="architectureFoot">If match completion is uncertain, the proposed design keeps analysis locked. No current-match data path leads back into the live overlay.</p></div>
+          <div className="sectionHeading" data-reveal><div><div className="eyebrow">PROPOSED RECORDING SCOPE</div><h2>The context behind the lesson.</h2></div><p>Every telemetry category is subject to Riot/Overwolf approval and source availability. This website records no gameplay and connects to no game APIs.</p></div>
+          <div className="dataGrid">{data.map(([n,title,desc,status])=><article key={n} data-reveal><div className="dataTop"><span>{n}</span><span aria-hidden="true">↗</span></div><h3>{title}</h3><p>{desc}</p><small>{status}</small></article>)}</div>
+          <div className="architecture" data-reveal><div className="architectureTitle"><span>PROPOSED DATA FLOW</span><small>Collection and coaching are separate paths.</small></div><div className="pipeline"><div><small>IN MATCH</small><strong>Approved recorder</strong><p>Consented events → stored timeline</p></div><div className="matchGate"><span aria-hidden="true">◇</span><strong>Match-end gate</strong><p>No analysis until confirmed complete</p></div><div><small>POST-GAME ONLY</small><strong>Analyzers → AI coach</strong><p>Structured findings → report → future goals</p></div></div><p className="architectureFoot">If match completion is uncertain, the proposed design keeps analysis locked. No current-match data path leads back into the live overlay.</p></div>
         </section>
 
         <section id="scope" className="section shell scopeSection">
@@ -82,7 +94,7 @@ export default function Page() {
         </section>
 
         <section id="privacy" className="section shell privacySection"><div><div className="eyebrow">PRIVACY & PLAYER CONTROL</div><h2>Your history.<br />Your choice.</h2><p className="sectionIntro">Try the proposed controls. These switches affect this demo only; nothing is recorded, uploaded or sent to an AI service.</p><a className="textLink" href="/privacy">Read the prototype privacy notice ↗</a></div><PrivacyDemo /></section>
-        <section className="closing shell"><div className="eyebrow">RECORD NOW. COACH LATER.</div><h2>The player plays.<br />The coach helps them reflect.</h2><a className="button primary" href="#coach">Explore the sample review <span aria-hidden="true">↗</span></a><p>Working name · Public product concept · Approval required before launch</p></section>
+        <section className="closing shell" data-reveal><div className="eyebrow">RECORD NOW. COACH LATER.</div><h2>The next game starts<br /><em>with a little more you.</em></h2><a className="button primary" href="#coach">Explore the sample review <span aria-hidden="true">↗</span></a><p>Working name · Public product concept · Approval required before launch</p></section>
       </main>
       <footer className="footer shell"><div><a className="brand" href="#">{product.name}<span className="brandMark smallMark" aria-hidden="true">T·</span></a><p>Independent TFT post-game coaching concept.</p><div className="footerLinks"><a href="/privacy">Privacy</a><a href="#scope">Review scope</a>{product.contactEmail ? <a href={`mailto:${product.contactEmail}`}>Contact developer</a> : <span>Review contact: to be added before submission</span>}</div></div><p className="disclaimer">{product.name} isn&apos;t endorsed by Riot Games and doesn&apos;t reflect the views or opinions of Riot Games or anyone officially involved in producing or managing Riot Games properties. Riot Games, and all associated properties are trademarks or registered trademarks of Riot Games, Inc.</p></footer>
     </>

@@ -75,3 +75,11 @@ Compatible with the Vercel Hobby tier, subject to its usage limits and terms:
 - `/privacy`: distinguishes the current website from the planned desktop application.
 - Branding and public contact are centralized in `app/product.ts`.
 - All interactive state resets on reload. No match capture, AI inference, cookies or analytics are implemented.
+
+## Visual experience
+
+The homepage follows a play → reflect → practice story. It uses a CSS 3D board driven by scrolling, one-time section reveals, a dimensional review-panel entrance and a progressively enhanced artwork parallax effect. No animation or WebGL package is required.
+
+`app/scroll-motion.tsx` manages scroll properties and reveal observers. Motion honors `prefers-reduced-motion`, including preference changes while the page is open. Content remains visible without JavaScript; the sample app controls require JavaScript.
+
+Live site: https://tactician-review.vercel.app. Pushes to `main` trigger Vercel. Use this repository’s configured personal commit identity; the unrelated work identity cannot deploy to the private Hobby project.
